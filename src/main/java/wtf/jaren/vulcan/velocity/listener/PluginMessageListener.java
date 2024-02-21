@@ -4,8 +4,11 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.PluginMessageEvent;
+import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ServerConnection;
 import wtf.jaren.vulcan.velocity.VulcanVelocity;
+
+import java.util.Arrays;
 
 public class PluginMessageListener {
     @Subscribe

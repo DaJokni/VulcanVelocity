@@ -13,8 +13,8 @@ import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import java.io.File;
 import java.nio.file.Path;
 
-import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import org.slf4j.Logger;
+import org.spongepowered.configurate.serialize.SerializationException;
 import wtf.jaren.vulcan.velocity.alert.AlertManager;
 import wtf.jaren.vulcan.velocity.command.AlertsCommand;
 import wtf.jaren.vulcan.velocity.config.Config;
@@ -57,7 +57,7 @@ public class VulcanVelocity {
     }
 
     @Subscribe
-    public void onProxyInitialization(ProxyInitializeEvent event) throws ObjectMappingException {
+    public void onProxyInitialization(ProxyInitializeEvent event) throws SerializationException {
         try {
             INSTANCE = this;
             Config.initializeConfig();

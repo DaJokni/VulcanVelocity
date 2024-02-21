@@ -4,6 +4,8 @@ import com.google.common.io.ByteArrayDataInput;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ServerConnection;
+
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import net.kyori.adventure.text.Component;
@@ -62,9 +64,7 @@ public class AlertManager {
     }
 
     public void handlePunishment(ServerConnection connection, ByteArrayDataInput input) {
-        String s = input.readUTF();
-        VulcanVelocity.INSTANCE.getLogger().info(s);
-        String[] components = s.split("#VULCAN#");
+        String[] components = input.readUTF().split("#VULCAN#");
         String command = components[0];
         VulcanVelocity.INSTANCE.getServer().getCommandManager().executeAsync((CommandSource)VulcanVelocity.INSTANCE.getServer().getConsoleCommandSource(), command);
         String checkName = components[1];

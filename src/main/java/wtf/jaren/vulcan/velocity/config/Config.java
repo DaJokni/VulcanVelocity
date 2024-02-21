@@ -1,14 +1,15 @@
 package wtf.jaren.vulcan.velocity.config;
 
-import com.google.common.reflect.TypeToken;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.List;
-import ninja.leaping.configurate.ConfigurationNode;
-import ninja.leaping.configurate.objectmapping.ObjectMappingException;
-import ninja.leaping.configurate.yaml.YAMLConfigurationLoader;
+
+import io.leangen.geantyref.TypeToken;
+import org.spongepowered.configurate.ConfigurationNode;
+import org.spongepowered.configurate.serialize.SerializationException;
+import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 import wtf.jaren.vulcan.velocity.VulcanVelocity;
 
 public final class Config {
@@ -34,7 +35,7 @@ public final class Config {
 
     public static boolean ENABLE_ALERTS_ON_JOIN;
 
-    public static void initializeConfig() throws ObjectMappingException {
+    public static void initializeConfig() throws SerializationException {
         try {
             if (!VulcanVelocity.INSTANCE.getDataFolder().exists())
                 VulcanVelocity.INSTANCE.getDataFolder().mkdir();
@@ -60,24 +61,23 @@ public final class Config {
                     e.printStackTrace();
                 }
             try {
-                YAMLConfigurationLoader loader = ((YAMLConfigurationLoader.Builder)YAMLConfigurationLoader.builder().setPath((new File(VulcanVelocity.INSTANCE.getDataFolder(), "config.yml")).toPath())).build();
+                YamlConfigurationLoader loader = (YamlConfigurationLoader.builder().path((new File(VulcanVelocity.INSTANCE.getDataFolder(), "config.yml")).toPath())).build();
                 configuration = loader.load();
             } catch (IOException e) {
                 System.err.println("[VulcanVelocity] Error while loading VulcanVelocity's configuration file!");
                 e.printStackTrace();
             }
-            PREFIX = configuration.getNode(new Object[] { "prefix" }).getString();
-            ALERTS_FORMAT = configuration.getNode(new Object[] { "alerts", "format" }).getString();
-            ALERTS_ENABLED = configuration.getNode(new Object[] { "messages", "alerts-enabled" }).getString();
-            ALERTS_DISABLED = configuration.getNode(new Object[] { "messages", "alerts-disabled" }).getString();
-            NO_PERMISSION = configuration.getNode(new Object[] { "messages", "no-permission" }).getString();
-            PUNISHMENT_FORMAT = configuration.getNode(new Object[] { "punishments", "format" }).getString();
-            ALERTS_CLICK_COMMAND = configuration.getNode(new Object[] { "alerts", "click-command" }).getString();
-            ALERTS_HOVER_FORMAT = configuration.getNode(new Object[] { "alerts", "hover-format" }).getList(new TypeToken<String>() {
+            PREFIX = configuration.node("prefix").getString();
+            ALERTS_FORMAT = configuration.node("alerts", "format").getString();
+            ALERTS_ENABLED = configuration.node("messages", "alerts-enabled").getString();
+            ALERTS_DISABLED = configuration.node("messages", "alerts-disabled").getString();
+            NO_PERMISSION = configuration.node("messages", "no-permission").getString();
+            PUNISHMENT_FORMAT = configuration.node("punishments", "format").getString();
+            ALERTS_CLICK_COMMAND = configuration.node("alerts", "click-command").getString();
+            ALERTS_HOVER_FORMAT = configuration.node("alerts", "hover-format").getList(new TypeToken<String>() {});
 
-            });
-            ENABLE_ALERTS_ON_JOIN = configuration.getNode(new Object[] { "settings", "enable-alerts-on-join" }).getBoolean();
-            DONT_SEND_ALERTS_TO_SAME_SERVER = configuration.getNode(new Object[] { "settings", "dont-send-alerts-to-same-server" }).getBoolean();
+            ENABLE_ALERTS_ON_JOIN = configuration.node("settings", "enable-alerts-on-join").getBoolean();
+            DONT_SEND_ALERTS_TO_SAME_SERVER = configuration.node("settings", "dont-send-alerts-to-same-server").getBoolean();
         } catch (Throwable $ex) {
             throw $ex;
         }
