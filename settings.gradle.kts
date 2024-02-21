@@ -1,1 +1,1 @@
-rootProject.name = 'VulcanVelocity'
+rootProject.name = "VulcanVelocity"
