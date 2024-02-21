@@ -21,7 +21,7 @@ import wtf.jaren.vulcan.velocity.config.Config;
 import wtf.jaren.vulcan.velocity.listener.PlayerListener;
 import wtf.jaren.vulcan.velocity.listener.PluginMessageListener;
 
-@Plugin(id = "vulcan", name = "VulcanVelocity", version = "2.0.6", authors = {"Jaren"})
+@Plugin(id = "vulcan", name = "VulcanVelocity", version = "2.0.7", authors = {"Jaren"})
 public class VulcanVelocity {
     private final ProxyServer server;
 
