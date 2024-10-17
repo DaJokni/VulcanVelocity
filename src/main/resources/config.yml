@@ -1,27 +1,29 @@
-prefix: '&4&lVulcan &8
+prefix: "<dark_red><bold>Vulcan</bold></dark_red>"
 
 alerts:
-  format: '&4&lVulcan &7(%server%) &8&f%player% &7failed &f%check% &7(&fType %type%&7) [&4%vl%&7/&4%max-vl%&7]'
-          hover-format:
-              - '&7Ping: &c%ping% &8| &7TPS: &c%tps% &8| &7Version: &c%client-version%'
-                - ''
-                - '&7Description:'
-                - '&7%description%'
-                - ''
-                - '&7Information:'
-                - '&7%info%'
-                - ''
-                - '&7Click to go to &b%server%&7.'
-          click-command: 'server %server%'
+  format: "%prefix% <gray>(%server%) <white>%player% <gray>failed <white>%check% <gray>(<white>Type %type%<gray>) [<red>%vl%<gray>/<red>%max-vl%<gray>]"
+  hover-format:
+    - "<gray>Ping: <red>%ping% <dark_gray>| <gray>TPS: <red>%tps% <dark_gray>| <gray>Version: <red>%client-version%"
+    - ""
+    - "<gray>Description:"
+    - "<gray>%description%"
+    - ""
+    - "<gray>Information:"
+    - "<gray>%info%"
+    - ""
+    - "<gray>Click to go to <aqua>%server%<gray>."
+  click-command: "server %server%"
 
 punishments:
-  format: '&4&lVulcan &7(%server%) &8&f%player% &7was punished for &f%check% &7(&fType %type%&7) [&4%max-vl%&7/&4%max-vl%&7]'
+  format: "%prefix% <gray>(%server%) <white>%player% <gray>was punished for <white>%check% <gray>(<white>Type %type%<gray>) [<red>%vl%<gray>/<red>%max-vl%<gray>]"
 
 messages:
-  no-permission: '&cYou don''t have permission to execute that command!'
-  alerts-enabled: '%prefix% &7Vulcan Velocity alerts &aenabled&7!'
-  alerts-disabled: '%prefix% &7Vulcan Velocity alerts &cdisabled&7!'
+  no-permission: "<red>You don't have permission to execute that command!"
+  alerts-enabled: "%prefix% <gray>Vulcan Velocity alerts <green>enabled<gray>!"
+  alerts-disabled: "%prefix% <gray>Vulcan Velocity alerts <red>disabled<gray>!"
 
 settings:
   dont-send-alerts-to-same-server: true
   enable-alerts-on-join: true
+
+config-version-do-not-touch: 2.1

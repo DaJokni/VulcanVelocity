@@ -1,18 +1,13 @@
 plugins {
     java
-    id("eclipse")
-    id("org.jetbrains.gradle.plugin.idea-ext") version "1.0.1"
 }
 
-group = "wtf.jaren"
-version = "2.0.7"
+group = "com.jokni"
+version = "2.1.0"
 
 repositories {
     mavenCentral()
-    maven {
-        name = "papermc-repo"
-        url = uri("https://repo.papermc.io/repository/maven-public/")
-    }
+    maven { url = uri("https://repo.papermc.io/repository/maven-public/") }
 }
 
 dependencies {
