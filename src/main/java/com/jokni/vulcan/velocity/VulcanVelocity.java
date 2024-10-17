@@ -65,7 +65,7 @@ public class VulcanVelocity {
         server.getEventManager().register(this, new PlayerListener());
         server.getEventManager().register(this, new PluginMessageListener());
         server.getCommandManager().register(
-                server.getCommandManager().metaBuilder("vbalerts").build(),
+                server.getCommandManager().metaBuilder("vvalerts").aliases("vbalerts").build(),
                 new AlertsCommand()
         );
     }

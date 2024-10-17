@@ -13,7 +13,7 @@ public class PlayerListener {
     public void onLogin(PostLoginEvent event) {
         Player player = event.getPlayer();
 
-        if (player.hasPermission("vulcanbungee.alerts") && Config.ENABLE_ALERTS_ON_JOIN) {
+        if (player.hasPermission("vulcanvelocity.alerts") && Config.ENABLE_ALERTS_ON_JOIN) {
             VulcanVelocity.getInstance().getAlertManager().toggleAlerts(player);
         }
     }

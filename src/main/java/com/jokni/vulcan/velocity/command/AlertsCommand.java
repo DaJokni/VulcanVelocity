@@ -30,6 +30,6 @@ public class AlertsCommand implements RawCommand {
 
     @Override
     public boolean hasPermission(RawCommand.Invocation invocation) {
-        return invocation.source().hasPermission("vulcanbungee.alerts");
+        return invocation.source().hasPermission("vulcanvelocity.alerts");
     }
 }
