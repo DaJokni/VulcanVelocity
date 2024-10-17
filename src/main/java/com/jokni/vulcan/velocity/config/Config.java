@@ -32,20 +32,21 @@ public final class Config {
     public static boolean ENABLE_ALERTS_ON_JOIN;
 
     public static void initializeConfig() throws SerializationException {
+        VulcanVelocity instance = VulcanVelocity.getInstance();
         try {
-            File dataFolder = VulcanVelocity.getInstance().getDataFolder();
+            File dataFolder = instance.getDataFolder();
             if (!dataFolder.exists()) {
                 dataFolder.mkdir();
             }
 
             File configFile = new File(dataFolder, "config.yml");
             if (!configFile.exists()) {
-                try (InputStream in = VulcanVelocity.getInstance().getClass().getClassLoader().getResourceAsStream("config.yml")) {
+                try (InputStream in = instance.getClass().getClassLoader().getResourceAsStream("config.yml")) {
                     if (in != null) {
                         Files.copy(in, configFile.toPath());
                     }
                 } catch (IOException e) {
-                    System.err.println("[VulcanVelocity] Error while loading VulcanVelocity's configuration file!");
+                    instance.getLogger().error("Error while loading VulcanVelocity's configuration file!");
                     e.printStackTrace();
                 }
             }
@@ -61,10 +62,11 @@ public final class Config {
                 //rename the old config file to old-config.yml
                 File oldConfigFile = new File(dataFolder, "old-config.yml");
                 if (configFile.renameTo(oldConfigFile)) {
-                    System.out.println("[VulcanVelocity] Legacy configuration renamed to old-config.yml.");
+                    instance.getLogger().warn("Legacy configuration renamed to old-config.yml.");
+
                     initializeConfig();
                 } else {
-                    System.err.println("[VulcanVelocity] Failed to rename legacy configuration file.");
+                    instance.getLogger().error("Failed to rename legacy configuration file.");
                 }
                 return;
             }
@@ -82,7 +84,7 @@ public final class Config {
             DONT_SEND_ALERTS_TO_SAME_SERVER = configuration.node("settings", "dont-send-alerts-to-same-server").getBoolean();
 
         } catch (IOException e) {
-            System.err.println("[VulcanVelocity] Error while loading VulcanVelocity's configuration file!");
+            instance.getLogger().error("Error while loading VulcanVelocity's configuration file!");
             e.printStackTrace();
         }
     }
